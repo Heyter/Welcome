@@ -12,12 +12,12 @@ public Plugin myinfo =
 	url = "http://forums.alliedmods.net/showthread.php?t=187975"
 };
 
-Handle sm_Join_Message = null;
-char Message[128];
+ConVar cVarJoinMessage = null;
+char message[512];
 
 public void OnPluginStart()
 {
-	sm_Join_Message = CreateConVar("sm_join_message", "Welcome {name}[{steamid}]!", "Default Join Message", FCVAR_NOTIFY);
+	cVarJoinMessage = CreateConVar("sm_join_message", "Welcome {name}[{steamid}]!", "Default Join Message", FCVAR_NOTIFY);
 	AutoExecConfig(true, "onJoin");
 	HookEvent("player_activate", Player_Activated, EventHookMode_Post);
 }
@@ -32,7 +32,7 @@ public Action Timer_Welcome(Handle timer, any client)
 {
 	if (IsClientConnected(client) && IsClientInGame(client))
 	{
-		GetConVarString(sm_Join_Message, Message, sizeof(Message));
+		GetConVarString(sm_Join_Message, message, sizeof(message));
 		char Name[128];
 		char SteamID[128];
 		char IP[128];
@@ -40,9 +40,9 @@ public Action Timer_Welcome(Handle timer, any client)
 		GetClientName(client, Name, sizeof(Name));
 		GetClientAuthId(client, AuthId_Engine, SteamID, sizeof(SteamID));
 		GetClientIP(client, IP, sizeof(IP));
-		ReplaceString(Message, sizeof(Message), "{name}", Name, false);
-		ReplaceString(Message, sizeof(Message), "{steamid}", SteamID, false);
-		ReplaceString(Message, sizeof(Message), "{ip}", IP, false);
+		ReplaceString(message, sizeof(message), "{name}", Name, false);
+		ReplaceString(message, sizeof(message), "{steamid}", SteamID, false);
+		ReplaceString(message, sizeof(message), "{ip}", IP, false);
 		CPrintToChat(client, Message, client);
 	}
 }
