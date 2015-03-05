@@ -38,7 +38,7 @@ public Action Timer_Welcome(Handle timer, any client)
 		char IP[128];
 		char Count[128];
 		GetClientName(client, Name, sizeof(Name));
-		GetClientAuthString(client, SteamID, sizeof(SteamID));
+		GetClientAuthId(client, AuthId_Engine, SteamID, sizeof(SteamID));
 		GetClientIP(client, IP, sizeof(IP));
 		ReplaceString(Message, sizeof(Message), "{name}", Name, false);
 		ReplaceString(Message, sizeof(Message), "{steamid}", SteamID, false);
