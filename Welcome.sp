@@ -13,7 +13,6 @@ public Plugin myinfo =
 };
 
 ConVar cVarJoinMessage = null;
-char message[512];
 
 public void OnPluginStart()
 {
@@ -32,16 +31,25 @@ public Action Timer_Welcome(Handle timer, any client)
 	if(!IsClientConnected(client) || !IsClientInGame(client))
 		return Plugin_Handled;
 
-	sm_Join_Message.GetString(message, sizeof(message));
-	char Name[128];
-	char SteamID[128];
-	char IP[128];
-	char Count[128];
-	GetClientName(client, Name, sizeof(Name));
-	GetClientAuthId(client, AuthId_Engine, SteamID, sizeof(SteamID));
-	GetClientIP(client, IP, sizeof(IP));
-	ReplaceString(message, sizeof(message), "{name}", Name, false);
-	ReplaceString(message, sizeof(message), "{steamid}", SteamID, false);
-	ReplaceString(message, sizeof(message), "{ip}", IP, false);
-	CPrintToChat(client, Message, client);
+	char message[512];
+	cVarJoinMessage.GetString(message, sizeof(message));
+	FormatMessage(client, message, sizeof(message));
+
+	CPrintToChat(client, message);
+	return Plugin_Handled;
+}
+
+void FormatMessage(int client, char[] msg, int length)
+{
+	char steamID[64];
+	GetClientAuthId(client, AuthId_Engine, steamID, sizeof(steamID));
+	ReplaceString(msg, length, "{steamid}", steamID, false);
+
+	char ip[128];
+	GetClientIP(client, ip, sizeof(ip));
+	ReplaceString(msg, length, "{ip}", ip, false);
+
+	char name[256];
+	GetClientName(client, name, sizeof(name));
+	ReplaceString(msg, length, "{name}", name, false);
 }
