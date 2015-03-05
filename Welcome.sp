@@ -1,7 +1,7 @@
 #pragma semicolon 1
 
 #include <sourcemod>
-#include <colors>
+#include <morecolors>
 
 public Plugin myinfo =
 {
