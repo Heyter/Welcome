@@ -8,8 +8,8 @@ new String:Message[128];
 public Plugin:myinfo =
 {
 	name = "Welcome",
-	author = "Hunter S. Thompson",
-	description = "My First Plugin - Displays a welcome message when the user joins.",
+	author = "Hunter S. Thompson | Modified by Shadow_Man",
+	description = "Displays a welcome message when the user joins.",
 	version = "1.0.0.0",
 	url = "http://forums.alliedmods.net/showthread.php?t=187975"
 };
