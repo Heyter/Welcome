@@ -29,19 +29,19 @@ public Action Player_Activated(Handle event, const char[] name, bool dontBroadca
 
 public Action Timer_Welcome(Handle timer, any client)
 {
-	if (IsClientConnected(client) && IsClientInGame(client))
-	{
-		sm_Join_Message.GetString(message, sizeof(message));
-		char Name[128];
-		char SteamID[128];
-		char IP[128];
-		char Count[128];
-		GetClientName(client, Name, sizeof(Name));
-		GetClientAuthId(client, AuthId_Engine, SteamID, sizeof(SteamID));
-		GetClientIP(client, IP, sizeof(IP));
-		ReplaceString(message, sizeof(message), "{name}", Name, false);
-		ReplaceString(message, sizeof(message), "{steamid}", SteamID, false);
-		ReplaceString(message, sizeof(message), "{ip}", IP, false);
-		CPrintToChat(client, Message, client);
-	}
+	if(!IsClientConnected(client) || !IsClientInGame(client))
+		return Plugin_Handled;
+
+	sm_Join_Message.GetString(message, sizeof(message));
+	char Name[128];
+	char SteamID[128];
+	char IP[128];
+	char Count[128];
+	GetClientName(client, Name, sizeof(Name));
+	GetClientAuthId(client, AuthId_Engine, SteamID, sizeof(SteamID));
+	GetClientIP(client, IP, sizeof(IP));
+	ReplaceString(message, sizeof(message), "{name}", Name, false);
+	ReplaceString(message, sizeof(message), "{steamid}", SteamID, false);
+	ReplaceString(message, sizeof(message), "{ip}", IP, false);
+	CPrintToChat(client, Message, client);
 }
