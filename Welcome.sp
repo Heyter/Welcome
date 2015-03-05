@@ -17,7 +17,7 @@ char Message[128];
 
 public void OnPluginStart()
 {
-	sm_Join_Message = CreateConVar("sm_join_message", "Welcome {name}[{steamid}], to Conflagration Deathrun!", "Default Join Message", FCVAR_NOTIFY);
+	sm_Join_Message = CreateConVar("sm_join_message", "Welcome {name}[{steamid}]!", "Default Join Message", FCVAR_NOTIFY);
 	AutoExecConfig(true, "onJoin");
 	HookEvent("player_activate", Player_Activated, EventHookMode_Post);
 }
