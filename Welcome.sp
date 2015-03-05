@@ -32,7 +32,7 @@ public Action Timer_Welcome(Handle timer, any client)
 {
 	if (IsClientConnected(client) && IsClientInGame(client))
 	{
-		GetConVarString(sm_Join_Message, message, sizeof(message));
+		sm_Join_Message.GetString(message, sizeof(message));
 		char Name[128];
 		char SteamID[128];
 		char IP[128];
