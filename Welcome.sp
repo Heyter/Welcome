@@ -18,7 +18,6 @@ char message[512];
 public void OnPluginStart()
 {
 	cVarJoinMessage = CreateConVar("sm_join_message", "Welcome {name}[{steamid}]!", "Default Join Message", FCVAR_NOTIFY);
-	AutoExecConfig(true, "onJoin");
 	HookEvent("player_activate", Player_Activated, EventHookMode_Post);
 }
 
