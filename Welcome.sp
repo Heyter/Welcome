@@ -13,17 +13,19 @@ public Plugin myinfo =
 };
 
 ConVar cVarJoinMessage = null;
+ConVar cVarMessageTime = null;
 
 public void OnPluginStart()
 {
 	cVarJoinMessage = CreateConVar("sm_join_message", "Welcome {name}[{steamid}]!", "Default Join Message", FCVAR_NONE);
+	cVarMessageTime = CreateConVar("sm_join_message_time", "4.0", "Delay for message to display.", FCVAR_NONE, true, 0.0, true, 60.0);
 	HookEvent("player_activate", Player_Activated, EventHookMode_Post);
 }
 
 public Action Player_Activated(Handle event, const char[] name, bool dontBroadcast)
 {
 	int client = GetClientOfUserId(GetEventInt(event, "userid"));
-	CreateTimer(4.0, Timer_Welcome, client, TIMER_FLAG_NO_MAPCHANGE);
+	CreateTimer(cVarMessageTime.FloatValue, Timer_Welcome, client, TIMER_FLAG_NO_MAPCHANGE);
 }
 
 public Action Timer_Welcome(Handle timer, any client)
