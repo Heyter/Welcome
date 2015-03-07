@@ -29,7 +29,7 @@ public void OnPluginStart()
 public Action Player_Activated(Handle event, const char[] name, bool dontBroadcast)
 {
 	int client = GetClientOfUserId(GetEventInt(event, "userid"));
-	if(showMessage[client])
+	if(!showMessage[client])
 		return Plugin_Continue;
 
 	CreateTimer(cVarMessageTime.FloatValue, Timer_Welcome, client, TIMER_FLAG_NO_MAPCHANGE);
