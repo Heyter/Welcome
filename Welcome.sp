@@ -9,7 +9,7 @@ public Plugin myinfo =
 	author = "Hunter S. Thompson | Modified by Shadow_Man",
 	description = "Displays a welcome message when the user joins.",
 	version = "1.1_1",
-	url = "http://forums.alliedmods.net/showthread.php?t=187975"
+	url = "http://tf2-casual-fun.de/
 };
 
 ConVar cVarJoinMessage = null;
