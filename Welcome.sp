@@ -3,10 +3,9 @@
 #include <sourcemod>
 #include <morecolors>
 
-public Plugin myinfo =
-{
+public Plugin myinfo = {
 	name = "Welcome",
-	author = "Hunter S. Thompson | Modified by Shadow_Man",
+	author = "Hunter S. Thompson | modified by the casual trade and fun server",
 	description = "Displays a welcome message when the user joins.",
 	version = "1.1_1",
 	url = "http://tf2-casual-fun.de/
